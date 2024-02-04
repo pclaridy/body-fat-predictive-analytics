@@ -522,7 +522,7 @@ print(mse_table)
 table_grob <- tableGrob(mse_table)
 
 # Save the table as an image
-png("mse_table.png", width = 800, height = 600)
+png("figures/mse_table.png", width = 800, height = 600)
 grid.draw(table_grob)
 dev.off()
 
@@ -543,7 +543,7 @@ print(avg_mse_table)
 table_grob <- tableGrob(avg_mse_table)
 
 # Save the table as an image
-png(filename = "avg_mse_table.png", width = 800, height = 600)
+png("figures/avg_mse_table.png", width = 800, height = 600)
 grid.draw(table_grob)
 dev.off()
 
