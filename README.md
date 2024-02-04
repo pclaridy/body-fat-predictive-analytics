@@ -1,6 +1,6 @@
 # Predicting Body Fat Percentage: Regression Models and Analysis
 
-This project focuses on predicting body fat percentage from various physiological measurements using regression models. We explore the complexities of estimating body fat percentages with a comprehensive analysis of multiple regression techniques. The study includes data preparation, exploratory data analysis, model development, and thorough evaluation methodologies.
+This project focuses on predicting body fat percentage from various physiological measurements using regression models. I explore the complexities of estimating body fat percentages with a comprehensive analysis of multiple regression techniques. The study includes data preparation, exploratory data analysis, model development, and thorough evaluation methodologies.
 
 ## Table of Contents
 
