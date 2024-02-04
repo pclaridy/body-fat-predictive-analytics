@@ -137,8 +137,30 @@ I reported and visualized my findings through tables and plots, comparing the MS
 
 My analysis detailed the MSE for individual models and the average MSE after conducting Monte Carlo simulations. The models exhibited varying levels of accuracy, with the Best Subset Model and LASSO Regression showing particularly low MSEs, indicating high predictive accuracy. The MSE comparison tables are below:
 
-![MSE](figures/mse_table.png)
-![Average MSE](figures/avg_mse_table.png)
+### MSE Values for Each Model
+
+| Model              | MSE          |
+|--------------------|--------------|
+| PLS                | 2.27862214   |
+| Subset             | 0.04926224   |
+| PCR                | 37.36907787  |
+| LASSO              | 150.23264894 |
+| Ridge              | 1.02850666   |
+| Stepwise           | 0.01080255   |
+| Linear Regression  | 0.04951692   |
+
+### Average MSE Values for Each Model
+
+| Model              | MSE          |
+|--------------------|--------------|
+| PLS                | 29.49893518  |
+| Subset             | 0.05671115   |
+| PCR                | 33.35285709  |
+| LASSO              | 0.06441354   |
+| Ridge              | 0.69024007   |
+| Stepwise           | 0.11385999   |
+| Linear Regression  | 0.09955287   |
+
 
 ## Findings
 
