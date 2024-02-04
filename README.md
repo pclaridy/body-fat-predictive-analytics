@@ -1,7 +1,5 @@
 # Predicting Body Fat Percentage: Regression Models and Analysis
 
-This project focuses on predicting body fat percentage from various physiological measurements using regression models. I explore the complexities of estimating body fat percentages with a comprehensive analysis of multiple regression techniques. The study includes data preparation, exploratory data analysis, model development, and thorough evaluation methodologies.
-
 ## Table of Contents
 
 - [Introduction](#introduction)
@@ -56,7 +54,7 @@ To replicate this analysis:
    install.packages(c("arxiv", "ggplot2", "dplyr", "glmnet", "pls", "leaps"))
 3. Open and run the R script `code.R` in your R environment
 
-## Exploratory Data Analysis (continued)
+## Exploratory Data Analysis
 
 ### Detailed Analysis of Predictors
 
