@@ -137,10 +137,8 @@ I reported and visualized my findings through tables and plots, comparing the MS
 
 My analysis detailed the MSE for individual models and the average MSE after conducting Monte Carlo simulations. The models exhibited varying levels of accuracy, with the Best Subset Model and LASSO Regression showing particularly low MSEs, indicating high predictive accuracy. The MSE comparison tables are below:
 
-- MSE values table:
-!(mse_table.png)
-- Average MSE values table:
-!(avg_mse_table.png)
+![MSE](figures/mse_table.png)
+![Average MSE](figures/avg_mse_table.png)
 
 ## Findings
 
