@@ -9,7 +9,6 @@
 - [Methods](#methods)
   - [Model Development](#model-development)
   - [Model Comparison and Validation](#model-comparison-and-validation)
-  - [Reporting and Visualization](#reporting-and-visualization)
 - [Results](#results)
 - [Findings](#findings)
 - [Conclusion](#conclusion)
@@ -127,9 +126,6 @@ I developed several regression models to predict body fat percentage, each with 
 
 Each model underwent a rigorous validation process, using Mean Squared Error (MSE) for performance assessment and Monte Carlo cross-validation to ensure model stability. Hyperparameter tuning was performed for models requiring it, such as ridge and LASSO regression.
 
-### Reporting and Visualization
-
-I reported and visualized my findings through tables and plots, comparing the MSE values of each model and summarizing the performance metrics to guide the choice of the best-performing model.
 
 ## Results
 
