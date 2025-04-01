@@ -160,8 +160,6 @@ Each model was tuned and validated using mean squared error and Monte Carlo simu
 - **Libraries**: `ggplot2`, `dplyr`, `glmnet`, `pls`, `leaps`  
 - **Validation**: Monte Carlo simulation  
 - **Evaluation Metric**: Mean Squared Error (MSE)  
-- **Repository**: [pclaridy/body-fat-predictive-analytics](https://github.com/pclaridy/body-fat-predictive-analytics)  
-- **Visuals Folder**: [figures](https://github.com/pclaridy/body-fat-predictive-analytics/tree/main/figures)
 
 ---
 
