@@ -13,31 +13,33 @@
 
 ---
 
-## **1. Problem Statement**  
-This project investigates the ability to predict body fat percentage from various physiological and body composition measurements. Using a sample of adult individuals, the objective is to compare several regression modeling techniques to determine which most accurately estimates body fat percentage. The study emphasizes the relationship between model selection, predictor quality, and interpretability in biomedical regression analysis.
+## **1. Problem Statement**
+
+This project explores how various physiological and body composition measurements can be used to predict body fat percentage. The goal is to compare several regression models and determine which method provides the most accurate and interpretable results. This is especially relevant in health and fitness contexts, where reliable body fat estimation can inform preventative care and training decisions.
 
 ---
 
-## **2. Data Source**  
-The dataset is derived from [`fat.csv`](https://github.com/pclaridy/body-fat-predictive-analytics/blob/main/fat.csv), which contains body composition measurements from 252 adults. Variables include:
+## **2. Data Source**
 
-- Target: **BodyFat** (percentage)  
-- Predictors: **Density**, **Age**, **Weight**, **Height**, and circumferences of the **Neck**, **Chest**, **Abdomen**, **Hip**, **Thigh**, **Knee**, **Ankle**, **Biceps**, **Forearm**, and **Wrist**
+The dataset [`fat.csv`](https://github.com/pclaridy/body-fat-predictive-analytics/blob/main/fat.csv) contains body composition measurements from 252 adults. Key variables include:
 
-The dataset reflects a broad range of demographics and body types, with participants aged 22 to 81 years and weights ranging from 118.5 to 363.15 pounds.
+- **Target**: BodyFat (%)  
+- **Predictors**: Density, Age, Weight, Height, and circumference measurements (e.g., Neck, Chest, Abdomen, Biceps)
+
+Participants ranged in age from 22 to 81 and weights from 118.5 to 363.15 pounds, offering a diverse and representative sample.
 
 ---
 
-## **3. Data Cleaning & Preprocessing**  
-Data preparation steps included:
+## **3. Data Cleaning & Preprocessing**
 
-- Initial inspection and correction of formatting issues  
-- Handling missing values  
-- Validating physiological plausibility of entries  
-- Normalizing or transforming variables as needed for model assumptions  
-- Pre-checks for multicollinearity and outlier detection prior to model development
+Preprocessing steps included:
 
-These steps ensured that each model could be fairly compared using consistent and clean data.
+- Removing outliers and entries with implausible values  
+- Verifying consistency in units  
+- Addressing missing values  
+- Preparing variables for regression assumptions (normality, linearity, multicollinearity)
+
+The dataset was normalized and cleaned for robust model performance and valid interpretation.
 
 ---
 
@@ -45,49 +47,50 @@ These steps ensured that each model could be fairly compared using consistent an
 
 ### Scatter Plots
 
-- **Siri vs. Brozek**  
-  ![Scatter Plot of Siri vs. Brozek](https://github.com/pclaridy/us-housing-market-analytics-2023/raw/main/reports/figures/scatterplot_siri_vs_brozek.png)
+**Siri vs. Brozek**  
+![Siri vs Brozek](https://github.com/pclaridy/body-fat-predictive-analytics/raw/main/figures/scatterplot_siri_vs_brozek.png)
 
-- **Density vs. Brozek**  
-  ![Scatter Plot of Density vs. Brozek](https://github.com/pclaridy/us-housing-market-analytics-2023/raw/main/reports/figures/scatterplot_density_vs_brozek.png)
+**Density vs. Brozek**  
+![Density vs Brozek](https://github.com/pclaridy/body-fat-predictive-analytics/raw/main/figures/scatterplot_density_vs_brozek.png)
 
-- **Biceps vs. Brozek**  
-  ![Scatter Plot of Biceps vs. Brozek](https://github.com/pclaridy/us-housing-market-analytics-2023/raw/main/reports/figures/scatterplot_biceps_vs_brozek.png)
+**Biceps vs. Brozek**  
+![Biceps vs Brozek](https://github.com/pclaridy/body-fat-predictive-analytics/raw/main/figures/scatterplot_biceps_vs_brozek.png)
 
 ### Residual Plots
 
-- **Siri**  
-  ![Residual Plot for Siri](https://github.com/pclaridy/us-housing-market-analytics-2023/raw/main/reports/figures/residual_plot_siri.png)
+**Siri**  
+![Residual Plot - Siri](https://github.com/pclaridy/body-fat-predictive-analytics/raw/main/figures/residual_plot_siri.png)
 
-- **Density**  
-  ![Residual Plot for Density](https://github.com/pclaridy/us-housing-market-analytics-2023/raw/main/reports/figures/residual_plot_density.png)
+**Density**  
+![Residual Plot - Density](https://github.com/pclaridy/body-fat-predictive-analytics/raw/main/figures/residual_plot_density.png)
 
-- **Biceps**  
-  ![Residual Plot for Biceps](https://github.com/pclaridy/us-housing-market-analytics-2023/raw/main/reports/figures/residual_plot_biceps.png)
+**Biceps**  
+![Residual Plot - Biceps](https://github.com/pclaridy/body-fat-predictive-analytics/raw/main/figures/residual_plot_biceps.png)
 
 ### Q-Q Plots
 
-- **Siri**  
-  ![Q-Q Plot for Siri](https://github.com/pclaridy/us-housing-market-analytics-2023/raw/main/reports/figures/qq_plot_siri.png)
+**Siri**  
+![Q-Q Plot - Siri](https://github.com/pclaridy/body-fat-predictive-analytics/raw/main/figures/qq_plot_siri.png)
 
-- **Density**  
-  ![Q-Q Plot for Density](https://github.com/pclaridy/us-housing-market-analytics-2023/raw/main/reports/figures/qq_plot_density.png)
+**Density**  
+![Q-Q Plot - Density](https://github.com/pclaridy/body-fat-predictive-analytics/raw/main/figures/qq_plot_density.png)
 
-- **Biceps**  
-  ![Q-Q Plot for Biceps](https://github.com/pclaridy/us-housing-market-analytics-2023/raw/main/reports/figures/qq_plot_biceps.png)
+**Biceps**  
+![Q-Q Plot - Biceps](https://github.com/pclaridy/body-fat-predictive-analytics/raw/main/figures/qq_plot_biceps.png)
 
 ### Histograms of Residuals
 
-- **Siri**  
-  ![Histogram of Residuals for Siri](https://github.com/pclaridy/us-housing-market-analytics-2023/raw/main/reports/figures/histogram_of_residuals_siri.png)
+**Siri**  
+![Histogram - Siri](https://github.com/pclaridy/body-fat-predictive-analytics/raw/main/figures/histogram_of_residuals_siri.png)
 
-- **Density**  
-  ![Histogram of Residuals for Density](https://github.com/pclaridy/us-housing-market-analytics-2023/raw/main/reports/figures/histogram_of_residuals_density.png)
+**Density**  
+![Histogram - Density](https://github.com/pclaridy/body-fat-predictive-analytics/raw/main/figures/histogram_of_residuals_density.png)
 
-- **Biceps**  
-  ![Histogram of Residuals for Biceps](https://github.com/pclaridy/us-housing-market-analytics-2023/raw/main/reports/figures/histogram_of_residuals_biceps.png)
+**Biceps**  
+![Histogram - Biceps](https://github.com/pclaridy/body-fat-predictive-analytics/raw/main/figures/histogram_of_residuals_biceps.png)
 
-Histograms and Q-Q plots showed that the residuals for Siri and Density were approximately normally distributed, which supports the assumptions of linear regression. The residuals for Biceps were more irregular, with signs of skewness and wider spread, indicating that the model fit was weaker for this variable.
+**Interpretation:**  
+Residuals for Siri and Density were nearly normal, indicating good model fit. The Biceps residuals showed a wider spread and irregular distribution, suggesting that a linear model may not capture the relationship as well for that feature.
 
 ---
 
@@ -95,58 +98,59 @@ Histograms and Q-Q plots showed that the residuals for Siri and Density were app
 
 The following regression models were developed and compared:
 
-- Full Linear Model  
-- Best Subset Regression  
-- Stepwise Regression using AIC  
+- Full Linear Regression  
+- Best Subset Selection  
+- Stepwise Regression (AIC-based)  
 - Ridge Regression  
 - LASSO Regression  
 - Principal Component Regression (PCR)  
 - Partial Least Squares (PLS)
 
-Models were tuned and validated using Mean Squared Error (MSE) and Monte Carlo simulations for robustness.
+Each model was tuned and validated using mean squared error and Monte Carlo simulations.
 
 ---
 
 ## **6. Evaluation Metrics**
 
-### Initial Test MSE
+### MSE on Initial Test Set
 
 | Model              | MSE          |
 |--------------------|--------------|
-| PLS                | 2.2786       |
+| Stepwise           | **0.0108**   |
 | Subset             | 0.0493       |
+| Linear Regression  | 0.0495       |
+| Ridge              | 1.0285       |
+| PLS                | 2.2786       |
 | PCR                | 37.3691      |
 | LASSO              | 150.2326     |
-| Ridge              | 1.0285       |
-| Stepwise           | **0.0108**   |
-| Linear Regression  | 0.0495       |
 
-### Average MSE Across Monte Carlo Simulations
+### Average MSE from Monte Carlo Simulations
 
-| Model              | Avg MSE      |
+| Model              | Average MSE  |
 |--------------------|--------------|
-| PLS                | 29.4989      |
 | Subset             | **0.0567**   |
-| PCR                | 33.3529      |
 | LASSO              | 0.0644       |
-| Ridge              | 0.6902       |
-| Stepwise           | 0.1139       |
 | Linear Regression  | 0.0996       |
+| Stepwise           | 0.1139       |
+| Ridge              | 0.6902       |
+| PLS                | 29.4989      |
+| PCR                | 33.3529      |
 
 ---
 
 ## **7. Outcome**
 
-The results of this analysis highlight a few important conclusions:
-
 - **Stepwise Regression had the lowest MSE in the initial test set.**  
-  When the models were evaluated on a single holdout set, Stepwise Regression produced the most accurate predictions. Its mean squared error was the smallest of all models, indicating it captured the underlying relationships in the data effectively.
+  It performed best on a fixed validation split, showing strong accuracy for the available data.
 
 - **Best Subset Regression had the lowest average MSE across simulations.**  
-  Across multiple iterations using Monte Carlo cross-validation, the Best Subset model consistently yielded the best average performance. This suggests that it generalized better across different subsets of the data and was the most reliable model overall.
+  It performed most consistently across different train-test splits, indicating strong generalization.
 
-- **Linear models with variable selection performed better than regularized and dimension-reduction models.**  
-  In this dataset, models that selected the most relevant variables outperformed more complex approaches such as Ridge, LASSO, Principal Component Regression, and Partial Least Squares. This suggests that the signal in the data was strong enough that simple, well-selected predictors were more effective than techniques that added regularization or transformed the feature space.
+- **Linear models with variable selection outperformed more complex models.**  
+  Simpler techniques like stepwise and subset selection produced stronger results than regularized models or component-based approaches. This suggests that a small number of well-selected variables capture the predictive signal more effectively than global shrinkage or dimensionality reduction.
+
+- **Why did Ridge, LASSO, PLS, and PCR underperform?**  
+  In this dataset, multicollinearity was present but manageable, so the penalization in Ridge and LASSO may have unnecessarily shrunk important coefficients. Similarly, component-based methods like PLS and PCR reduced predictors into orthogonal combinations that may have diluted the original structure of the data. These methods can be powerful when there is noise or redundancy, but here they appeared to obscure meaningful relationships between individual measurements and body fat percentage.
 
 ---
 
@@ -154,20 +158,21 @@ The results of this analysis highlight a few important conclusions:
 
 - **Language**: R  
 - **Libraries**: `ggplot2`, `dplyr`, `glmnet`, `pls`, `leaps`  
-- **Model Types**: Linear Regression, Stepwise Regression, Subset Selection, Ridge, LASSO, PCR, PLS  
-- **Validation Method**: Monte Carlo simulations with MSE as the evaluation metric  
-- **Visualizations**: Diagnostic and performance plots available in the [figures directory](https://github.com/pclaridy/us-housing-market-analytics-2023/tree/main/reports/figures)
+- **Validation**: Monte Carlo simulation  
+- **Evaluation Metric**: Mean Squared Error (MSE)  
+- **Repository**: [pclaridy/body-fat-predictive-analytics](https://github.com/pclaridy/body-fat-predictive-analytics)  
+- **Visuals Folder**: [figures](https://github.com/pclaridy/body-fat-predictive-analytics/tree/main/figures)
 
 ---
 
 ## **9. Business Impact / Use Case**
 
-Accurately predicting body fat percentage from non-invasive physiological measurements has a wide range of applications:
+This project provides a practical, interpretable framework for predicting body fat percentage using affordable and accessible body measurements. It offers tangible benefits to:
 
-- **Healthcare Providers** can use these models for early detection of obesity-related risk factors, allowing for proactive patient counseling and interventions without needing expensive tools like DEXA scans.
-- **Fitness Professionals** and **Athletic Programs** can implement these models in performance tracking apps to monitor changes in body composition over time using accessible inputs.
-- **Insurance Companies** may incorporate predictive models into underwriting processes to assess long-term health risks in a cost-efficient and data-driven manner.
-- **Wearable Technology Companies** could integrate this kind of modeling into apps or devices, offering users a more holistic view of their physical health based on simple measurements.
-- **Research and Public Health** agencies can use these approaches to evaluate trends in body composition at the population level and identify at-risk groups using readily available data.
+- **Healthcare**: Provides low-cost, fast screening for obesity-related risks  
+- **Fitness Professionals**: Offers clients data-driven health assessments  
+- **Wearable Tech**: Enables predictive modeling features in fitness apps  
+- **Insurance Providers**: Supports underwriting decisions with lightweight biometric models  
+- **Public Health Researchers**: Tracks body composition trends at scale using reproducible, non-invasive data inputs
 
-This project demonstrates how accessible statistical methods and data science techniques can offer practical, scalable tools for understanding human health and driving evidence-based decisions in both personal and professional domains.
+These models support proactive health decisions and remain easy to interpret for both technical and non-technical audiences.
