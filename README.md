@@ -1,6 +1,7 @@
 # **Predicting Body Fat Percentage: A Comparative Study of Regression Techniques**
 
 ## **Table of Contents**
+
 1. [Problem Statement](#1-problem-statement)  
 2. [Data Source](#2-data-source)  
 3. [Data Cleaning & Preprocessing](#3-data-cleaning--preprocessing)  
@@ -147,10 +148,10 @@ Each model was tuned and validated using mean squared error and Monte Carlo simu
   It performed most consistently across different train-test splits, indicating strong generalization.
 
 - **Linear models with variable selection outperformed more complex models.**  
-  Simpler techniques like stepwise and subset selection produced stronger results than regularized models or component-based approaches. This suggests that a small number of well-selected variables capture the predictive signal more effectively than global shrinkage or dimensionality reduction.
+  Simpler techniques like stepwise and subset selection produced stronger results than regularized models or component-based approaches. This suggests that a small number of well-selected variables captured the predictive signal more effectively than global shrinkage or dimensionality reduction.
 
-- **Why did Ridge, LASSO, PLS, and PCR underperform?**  
-  In this dataset, multicollinearity was present but manageable, so the penalization in Ridge and LASSO may have unnecessarily shrunk important coefficients. Similarly, component-based methods like PLS and PCR reduced predictors into orthogonal combinations that may have diluted the original structure of the data. These methods can be powerful when there is noise or redundancy, but here they appeared to obscure meaningful relationships between individual measurements and body fat percentage.
+- **Underperformance of Ridge, LASSO, PCR, and PLS**  
+  While multicollinearity was present in the data, it did not significantly hinder traditional linear models. Regularization techniques such as Ridge and LASSO may have over-penalized some of the most informative coefficients, reducing their contribution to the prediction. Similarly, component-based methods like PLS and PCR transform the original features into new, uncorrelated components that can obscure important individual relationships. These techniques are often effective in high-dimensional or noisy settings, but in this case, they appeared to dilute key patterns in the data and limit interpretability without offering gains in accuracy.
 
 ---
 
