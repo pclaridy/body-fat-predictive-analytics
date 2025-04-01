@@ -19,10 +19,10 @@ This project investigates the ability to predict body fat percentage from variou
 ---
 
 ## **2. Data Source**  
-The dataset is derived from `fat.csv`, which contains body composition measurements from 252 adults. Variables include:
+The dataset is derived from [`fat.csv`](https://github.com/pclaridy/body-fat-predictive-analytics/blob/main/fat.csv), which contains body composition measurements from 252 adults. Variables include:
 
 - Target: **BodyFat** (percentage)  
-- Predictors: **Density**, **Age**, **Weight**, **Height**, and circumferences of the **Neck**, **Chest**, **Abdomen**, **Hip**, **Thigh**, **Knee**, **Ankle**, **Biceps**, **Forearm**, and **Wrist**  
+- Predictors: **Density**, **Age**, **Weight**, **Height**, and circumferences of the **Neck**, **Chest**, **Abdomen**, **Hip**, **Thigh**, **Knee**, **Ankle**, **Biceps**, **Forearm**, and **Wrist**
 
 The dataset reflects a broad range of demographics and body types, with participants aged 22 to 81 years and weights ranging from 118.5 to 363.15 pounds.
 
@@ -45,96 +45,71 @@ These steps ensured that each model could be fairly compared using consistent an
 
 ### Scatter Plots
 
-These plots visualize the relationships between selected predictors and the target variable (body fat % as estimated using the Brozek formula):
-
 - **Siri vs. Brozek**  
-  ![Scatter Plot of Siri vs. Brozek](figures/scatterplot_siri_vs_brozek.png)
+  ![Scatter Plot of Siri vs. Brozek](https://github.com/pclaridy/us-housing-market-analytics-2023/raw/main/reports/figures/scatterplot_siri_vs_brozek.png)
 
 - **Density vs. Brozek**  
-  ![Scatter Plot of Density vs. Brozek](figures/scatterplot_density_vs_brozek.png)
+  ![Scatter Plot of Density vs. Brozek](https://github.com/pclaridy/us-housing-market-analytics-2023/raw/main/reports/figures/scatterplot_density_vs_brozek.png)
 
 - **Biceps vs. Brozek**  
-  ![Scatter Plot of Biceps vs. Brozek](figures/scatterplot_biceps_vs_brozek.png)
-
-These visualizations confirm a strong linear relationship for `Siri` and `Density`, while `Biceps` displays more variability.
-
----
+  ![Scatter Plot of Biceps vs. Brozek](https://github.com/pclaridy/us-housing-market-analytics-2023/raw/main/reports/figures/scatterplot_biceps_vs_brozek.png)
 
 ### Residual Plots
 
-Residuals were plotted to evaluate homoscedasticity and model fit:
-
 - **Siri**  
-  ![Residual Plot for Siri](figures/residual_plot_siri.png)
+  ![Residual Plot for Siri](https://github.com/pclaridy/us-housing-market-analytics-2023/raw/main/reports/figures/residual_plot_siri.png)
 
 - **Density**  
-  ![Residual Plot for Density](figures/residual_plot_density.png)
+  ![Residual Plot for Density](https://github.com/pclaridy/us-housing-market-analytics-2023/raw/main/reports/figures/residual_plot_density.png)
 
 - **Biceps**  
-  ![Residual Plot for Biceps](figures/residual_plot_biceps.png)
-
-Residuals for `Siri` and `Density` were fairly evenly distributed. The `Biceps` model showed more spread, indicating less stability.
-
----
+  ![Residual Plot for Biceps](https://github.com/pclaridy/us-housing-market-analytics-2023/raw/main/reports/figures/residual_plot_biceps.png)
 
 ### Q-Q Plots
 
-Q-Q plots assess whether residuals are normally distributed:
-
 - **Siri**  
-  ![Q-Q Plot for Siri](figures/qq_plot_siri.png)
+  ![Q-Q Plot for Siri](https://github.com/pclaridy/us-housing-market-analytics-2023/raw/main/reports/figures/qq_plot_siri.png)
 
 - **Density**  
-  ![Q-Q Plot for Density](figures/qq_plot_density.png)
+  ![Q-Q Plot for Density](https://github.com/pclaridy/us-housing-market-analytics-2023/raw/main/reports/figures/qq_plot_density.png)
 
 - **Biceps**  
-  ![Q-Q Plot for Biceps](figures/qq_plot_biceps.png)
-
-Deviations from the line were minimal for `Siri` and `Density`, while `Biceps` displayed greater skewness.
-
----
+  ![Q-Q Plot for Biceps](https://github.com/pclaridy/us-housing-market-analytics-2023/raw/main/reports/figures/qq_plot_biceps.png)
 
 ### Histograms of Residuals
 
-Histograms provide further insight into the distribution of residuals:
-
 - **Siri**  
-  ![Histogram of Residuals for Siri](figures/histogram_of_residuals_siri.png)
+  ![Histogram of Residuals for Siri](https://github.com/pclaridy/us-housing-market-analytics-2023/raw/main/reports/figures/histogram_of_residuals_siri.png)
 
 - **Density**  
-  ![Histogram of Residuals for Density](figures/histogram_of_residuals_density.png)
+  ![Histogram of Residuals for Density](https://github.com/pclaridy/us-housing-market-analytics-2023/raw/main/reports/figures/histogram_of_residuals_density.png)
 
 - **Biceps**  
-  ![Histogram of Residuals for Biceps](figures/histogram_of_residuals_biceps.png)
+  ![Histogram of Residuals for Biceps](https://github.com/pclaridy/us-housing-market-analytics-2023/raw/main/reports/figures/histogram_of_residuals_biceps.png)
 
-The distributions for `Siri` and `Density` residuals were near normal. The histogram for `Biceps` was more irregular.
+Histograms and Q-Q plots showed that the residuals for Siri and Density were approximately normally distributed, which supports the assumptions of linear regression. The residuals for Biceps were more irregular, with signs of skewness and wider spread, indicating that the model fit was weaker for this variable.
 
 ---
 
 ## **5. Modeling Approach**
 
-The following regression models were implemented using R:
+The following regression models were developed and compared:
 
-- **Full Linear Model**: Includes all predictors  
-- **Best Subset Linear Regression**: Selects an optimal subset based on performance  
-- **Stepwise Regression (AIC)**: Automatically includes or removes predictors  
-- **Ridge Regression**: Penalizes large coefficients to reduce multicollinearity  
-- **LASSO Regression**: Shrinks less important coefficients to zero  
-- **Principal Component Regression (PCR)**: Uses orthogonal principal components  
-- **Partial Least Squares (PLS)**: Balances variance in predictors and target variable
+- Full Linear Model  
+- Best Subset Regression  
+- Stepwise Regression using AIC  
+- Ridge Regression  
+- LASSO Regression  
+- Principal Component Regression (PCR)  
+- Partial Least Squares (PLS)
 
-### Validation Strategy
-- **Performance Metric**: Mean Squared Error (MSE)  
-- **Robustness Check**: Monte Carlo Cross-Validation  
-- **Tuning**: Regularization strength and component counts for applicable models
+Models were tuned and validated using Mean Squared Error (MSE) and Monte Carlo simulations for robustness.
 
 ---
 
 ## **6. Evaluation Metrics**
 
-MSE was calculated for each model on the test data and averaged across simulations to compare stability and generalization. Results are presented below:
-
-#### MSE Values from Initial Fitting
+### Initial Test MSE
 
 | Model              | MSE          |
 |--------------------|--------------|
@@ -146,7 +121,7 @@ MSE was calculated for each model on the test data and averaged across simulatio
 | Stepwise           | **0.0108**   |
 | Linear Regression  | 0.0495       |
 
-#### Average MSE Across Monte Carlo Simulations
+### Average MSE Across Monte Carlo Simulations
 
 | Model              | Avg MSE      |
 |--------------------|--------------|
@@ -162,32 +137,37 @@ MSE was calculated for each model on the test data and averaged across simulatio
 
 ## **7. Outcome**
 
-- The **Stepwise Regression Model** had the lowest MSE in the initial evaluation (0.0108), indicating high prediction accuracy.  
-- The **Best Subset Model** showed the lowest **average MSE** during Monte Carlo simulation (0.0567), suggesting strong consistency across resamples.  
-- Regularized models (Ridge, LASSO) were less effective in this case, with LASSO especially underperforming, likely due to multicollinearity and lack of dominant sparse features.
+The results of this analysis highlight a few important conclusions:
 
-These results show that variable selection-based linear models can outperform penalized methods in clean, well-structured datasets with few noisy predictors.
+- **Stepwise Regression had the lowest MSE in the initial test set.**  
+  When the models were evaluated on a single holdout set, Stepwise Regression produced the most accurate predictions. Its mean squared error was the smallest of all models, indicating it captured the underlying relationships in the data effectively.
+
+- **Best Subset Regression had the lowest average MSE across simulations.**  
+  Across multiple iterations using Monte Carlo cross-validation, the Best Subset model consistently yielded the best average performance. This suggests that it generalized better across different subsets of the data and was the most reliable model overall.
+
+- **Linear models with variable selection performed better than regularized and dimension-reduction models.**  
+  In this dataset, models that selected the most relevant variables outperformed more complex approaches such as Ridge, LASSO, Principal Component Regression, and Partial Least Squares. This suggests that the signal in the data was strong enough that simple, well-selected predictors were more effective than techniques that added regularization or transformed the feature space.
 
 ---
 
 ## **8. Tools Used**
 
 - **Language**: R  
-- **Packages**: `ggplot2`, `dplyr`, `glmnet`, `pls`, `leaps`  
-- **Model Types**: Full Linear, Subset, Stepwise (AIC), Ridge, LASSO, PCR, PLS  
-- **Validation**: Monte Carlo simulations  
-- **Reporting**: R Markdown and inline commentary  
-- **Visuals**: Scatter plots, residual diagnostics, histograms, and Q-Q plots saved in the `/figures` directory
+- **Libraries**: `ggplot2`, `dplyr`, `glmnet`, `pls`, `leaps`  
+- **Model Types**: Linear Regression, Stepwise Regression, Subset Selection, Ridge, LASSO, PCR, PLS  
+- **Validation Method**: Monte Carlo simulations with MSE as the evaluation metric  
+- **Visualizations**: Diagnostic and performance plots available in the [figures directory](https://github.com/pclaridy/us-housing-market-analytics-2023/tree/main/reports/figures)
 
 ---
 
 ## **9. Business Impact / Use Case**
 
-Accurately estimating body fat percentage has wide applications in:
+Accurately predicting body fat percentage from non-invasive physiological measurements has a wide range of applications:
 
-- **Personalized fitness tracking**  
-- **Clinical health monitoring**  
-- **Military and athletic readiness screening**  
-- **Insurance underwriting and risk evaluation**
+- **Healthcare Providers** can use these models for early detection of obesity-related risk factors, allowing for proactive patient counseling and interventions without needing expensive tools like DEXA scans.
+- **Fitness Professionals** and **Athletic Programs** can implement these models in performance tracking apps to monitor changes in body composition over time using accessible inputs.
+- **Insurance Companies** may incorporate predictive models into underwriting processes to assess long-term health risks in a cost-efficient and data-driven manner.
+- **Wearable Technology Companies** could integrate this kind of modeling into apps or devices, offering users a more holistic view of their physical health based on simple measurements.
+- **Research and Public Health** agencies can use these approaches to evaluate trends in body composition at the population level and identify at-risk groups using readily available data.
 
-This project demonstrates how interpretable regression models can be applied to derive reliable body composition insights, avoiding the need for expensive or invasive measurement procedures.
+This project demonstrates how accessible statistical methods and data science techniques can offer practical, scalable tools for understanding human health and driving evidence-based decisions in both personal and professional domains.
