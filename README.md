@@ -15,7 +15,7 @@
 
 ## **1. Problem Statement**
 
-This project explores how various physiological and body composition measurements can be used to predict body fat percentage. The goal is to compare several regression models and determine which method provides the most accurate and interpretable results. This is especially relevant in health and fitness contexts, where reliable body fat estimation can inform preventative care and training decisions.
+Accurately estimating body fat percentage is essential in both clinical health assessments and personal fitness planning, yet direct measurement techniques can be invasive, expensive, or impractical for routine use. This project aims to build and evaluate regression models that predict body fat percentage from easily measurable physiological features such as circumference measurements, age, weight, and height. By comparing different linear and regularized regression approaches, the analysis seeks to identify the most accurate and interpretable model. The ultimate goal is to support more accessible and reliable body composition assessments that can aid in preventative care, fitness goal tracking, and health risk evaluation.
 
 ---
 
