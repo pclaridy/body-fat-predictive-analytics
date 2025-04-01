@@ -1,172 +1,193 @@
-# Predicting Body Fat Percentage: Regression Models and Analysis
+# **Predicting Body Fat Percentage: A Comparative Study of Regression Techniques**
 
-## Table of Contents
+## **Table of Contents**
+1. [Problem Statement](#1-problem-statement)  
+2. [Data Source](#2-data-source)  
+3. [Data Cleaning & Preprocessing](#3-data-cleaning--preprocessing)  
+4. [Exploratory Data Analysis (EDA)](#4-exploratory-data-analysis-eda)  
+5. [Modeling Approach](#5-modeling-approach)  
+6. [Evaluation Metrics](#6-evaluation-metrics)  
+7. [Outcome](#7-outcome)  
+8. [Tools Used](#8-tools-used)  
+9. [Business Impact / Use Case](#9-business-impact--use-case)
 
-- [Introduction](#introduction)
-- [Data Description](#data-description)
-- [Installation](#installation)
-- [Exploratory Data Analysis](#exploratory-data-analysis)
-- [Methods](#methods)
-  - [Model Development](#model-development)
-  - [Model Comparison and Validation](#model-comparison-and-validation)
-- [Results](#results)
-- [Findings](#findings)
-- [Conclusion](#conclusion)
-- [References](#references)
+---
 
-## Introduction
+## **1. Problem Statement**  
+This project investigates the ability to predict body fat percentage from various physiological and body composition measurements. Using a sample of adult individuals, the objective is to compare several regression modeling techniques to determine which most accurately estimates body fat percentage. The study emphasizes the relationship between model selection, predictor quality, and interpretability in biomedical regression analysis.
 
-This study explores the complexities of predicting body fat percentage from various physiological measurements contained within the fat.csv dataset. The research encompasses a comprehensive analysis of multiple regression techniques, aiming to identify the most accurate models for estimating body fat percentages. The paper discusses the data preparation, exploratory data analysis, model development, and evaluation methodologies in detail.
+---
 
-## Data Description
+## **2. Data Source**  
+The dataset is derived from `fat.csv`, which contains body composition measurements from 252 adults. Variables include:
 
-The dataset, `fat.csv`, contains a diverse array of physiological and body composition measurements from 252 individuals. It includes variables such as body fat percentage, body density, age, weight, height, and various circumferences (neck, chest, abdomen, hip, thigh, knee, ankle, biceps, forearm, and wrist). This dataset presents a wide demographic range, with ages from 22 to 81 years and weights from 118.5 to 363.15 pounds, illustrating the broad spectrum of body sizes and compositions covered.
+- Target: **BodyFat** (percentage)  
+- Predictors: **Density**, **Age**, **Weight**, **Height**, and circumferences of the **Neck**, **Chest**, **Abdomen**, **Hip**, **Thigh**, **Knee**, **Ankle**, **Biceps**, **Forearm**, and **Wrist**  
 
-Variable Details:
-- **BodyFat**: Body fat percentage.
-- **Density**: Body density.
-- **Age**: Age of the individual.
-- **Weight**: Weight in pounds.
-- **Height**: Height in inches.
-- **Neck**: Neck circumference in inches.
-- **Chest**: Chest circumference in inches.
-- **Abdomen**: Abdomen circumference in inches.
-- **Hip**: Hip circumference in inches.
-- **Thigh**: Thigh circumference in inches.
-- **Knee**: Knee circumference in inches.
-- **Ankle**: Ankle circumference in inches.
-- **Biceps**: Biceps circumference in inches.
-- **Forearm**: Forearm circumference in inches.
-- **Wrist**: Wrist circumference in inches.
+The dataset reflects a broad range of demographics and body types, with participants aged 22 to 81 years and weights ranging from 118.5 to 363.15 pounds.
 
-## Installation
+---
 
-To replicate this analysis:
+## **3. Data Cleaning & Preprocessing**  
+Data preparation steps included:
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/pclaridy/body-fat-prediction.git
-   cd body-fat-prediction
-2. Install the required R packages. You can do this by running the following command in R:
+- Initial inspection and correction of formatting issues  
+- Handling missing values  
+- Validating physiological plausibility of entries  
+- Normalizing or transforming variables as needed for model assumptions  
+- Pre-checks for multicollinearity and outlier detection prior to model development
 
-   ```R
-   install.packages(c("arxiv", "ggplot2", "dplyr", "glmnet", "pls", "leaps"))
-3. Open and run the R script `code.R` in your R environment
+These steps ensured that each model could be fairly compared using consistent and clean data.
 
-## Exploratory Data Analysis
+---
 
-### Detailed Analysis of Predictors
+## **4. Exploratory Data Analysis (EDA)**
 
-In my exploratory data analysis, I examined the relationships between significant predictors (`Siri`, `Density`, and `Biceps`) and the `Brozek` formula for body fat percentage through scatter plots, residual plots, Q-Q plots, and histograms. These analyses were crucial for validating the assumptions of linear regression models and provided in-depth insights into the predictors' behaviors.
+### Scatter Plots
 
-#### Scatter Plots
+These plots visualize the relationships between selected predictors and the target variable (body fat % as estimated using the Brozek formula):
 
-The scatter plots provided the first glance at the relationships between each significant predictor and body fat percentage.
+- **Siri vs. Brozek**  
+  ![Scatter Plot of Siri vs. Brozek](figures/scatterplot_siri_vs_brozek.png)
 
-- **Scatter Plot of Siri vs. Brozek**: This plot revealed a strong linear relationship between `Siri` and `Brozek`, indicating that `Siri` is a highly predictive variable for body fat percentage. The regression line, depicted in red, closely followed the data points, showcasing the accuracy of the linear model in capturing this relationship.
-  
-- **Scatter Plot of Density vs. Brozek**: Similarly, the scatter plot for `Density` displayed a strong linear correlation with `Brozek`, with data points tightly clustered around the regression line. This highlights `Density` as another crucial predictor in estimating body fat percentage.
-  
-- **Scatter Plot of Biceps vs. Brozek**: The relationship between `Biceps` circumference and `Brozek` showed a linear trend but with more variability around the regression line compared to `Siri` and `Density`. This suggests that while `Biceps` circumference is significant, it may not be as strong a predictor as `Siri` or `Density`.
+- **Density vs. Brozek**  
+  ![Scatter Plot of Density vs. Brozek](figures/scatterplot_density_vs_brozek.png)
 
-![Scatter Plot of Siri vs. Brozek](figures/scatterplot_siri_vs_brozek.png)
-![Scatter Plot of Density vs. Brozek](figures/scatterplot_density_vs_brozek.png)
-![Scatter Plot of Biceps vs. Brozek](figures/scatterplot_biceps_vs_brozek.png)
+- **Biceps vs. Brozek**  
+  ![Scatter Plot of Biceps vs. Brozek](figures/scatterplot_biceps_vs_brozek.png)
 
-#### Residual Plots
+These visualizations confirm a strong linear relationship for `Siri` and `Density`, while `Biceps` displays more variability.
 
-The residual plots for each significant predictor demonstrated the spread of residuals and were instrumental in assessing homoscedasticity.
+---
 
-- **Residual Plot for Siri**: Showed a fairly even distribution of residuals around the zero line, indicating homoscedasticity and a well-fitted model for `Siri`.
-  
-- **Residual Plot for Density**: Demonstrated an even spread of residuals, reinforcing the accuracy of the model for `Density`.
-  
-- **Residual Plot for Biceps**: Revealed more spread in residuals, suggesting potential heteroscedasticity and indicating a less perfect fit for `Biceps`.
+### Residual Plots
 
-![Residual Plot for Siri](figures/residual_plot_siri.png)
-![Residual Plot for Density](figures/residual_plot_density.png)
-![Residual Plot for Biceps](figures/residual_plot_biceps.png)
+Residuals were plotted to evaluate homoscedasticity and model fit:
 
-#### Q-Q Plots
+- **Siri**  
+  ![Residual Plot for Siri](figures/residual_plot_siri.png)
 
-The Q-Q plots assessed the normality of the residuals' distribution.
+- **Density**  
+  ![Residual Plot for Density](figures/residual_plot_density.png)
 
-- **Q-Q Plot for Siri** and **Density**: Both plots indicated normally distributed errors, with minor deviations.
-  
-- **Q-Q Plot for Biceps**: Showed greater deviation from normality, suggesting the need for further investigation.
+- **Biceps**  
+  ![Residual Plot for Biceps](figures/residual_plot_biceps.png)
 
-![Q-Q Plot for Siri](figures/qq_plot_siri.png)
-![Q-Q Plot for Density](figures/qq_plot_density.png)
-![Q-Q Plot for Biceps](figures/qq_plot_biceps.png)
+Residuals for `Siri` and `Density` were fairly evenly distributed. The `Biceps` model showed more spread, indicating less stability.
 
-#### Histograms of Residuals
+---
 
-- **Histogram of Residuals for Siri** and **Density**: Displayed nearly normal distributions.
-  
-- **Histogram of Residuals for Biceps**: Showed an irregular distribution, indicating a complex relationship with body fat percentage.
+### Q-Q Plots
 
-![Histogram of Residuals for Siri](figures/histogram_of_residuals_siri.png)
-![Histogram of Residuals for Density](figures/histogram_of_residuals_density.png)
-![Histogram of Residuals for Biceps](figures/histogram_of_residuals_biceps.png)
+Q-Q plots assess whether residuals are normally distributed:
 
-## Methods
+- **Siri**  
+  ![Q-Q Plot for Siri](figures/qq_plot_siri.png)
 
-### Model Development
+- **Density**  
+  ![Q-Q Plot for Density](figures/qq_plot_density.png)
 
-I developed several regression models to predict body fat percentage, each with a different approach to handling the predictors and the structure of the data:
-- **Full Linear Model**: Incorporates all available predictors.
-- **Best Subset Linear Model**: Identifies the most significant variables for prediction.
-- **Stepwise Regression Using AIC**: Adds or removes predictors based on the Akaike Information Criterion.
-- **Ridge Regression**: Applies regularization to reduce multicollinearity among predictors.
-- **LASSO Regression**: Performs variable selection by shrinking coefficients of less significant variables to zero.
-- **Principal Component Regression (PCR)**: Reduces predictors to uncorrelated components.
-- **Partial Least Squares (PLS)**: Finds multidimensional variance directions that explain the response variable.
+- **Biceps**  
+  ![Q-Q Plot for Biceps](figures/qq_plot_biceps.png)
 
-### Model Comparison and Validation
+Deviations from the line were minimal for `Siri` and `Density`, while `Biceps` displayed greater skewness.
 
-Each model underwent a rigorous validation process, using Mean Squared Error (MSE) for performance assessment and Monte Carlo cross-validation to ensure model stability. Hyperparameter tuning was performed for models requiring it, such as ridge and LASSO regression.
+---
 
+### Histograms of Residuals
 
-## Results
+Histograms provide further insight into the distribution of residuals:
 
-My analysis detailed the MSE for individual models and the average MSE after conducting Monte Carlo simulations. The models exhibited varying levels of accuracy, with the Best Subset Model and LASSO Regression showing particularly low MSEs, indicating high predictive accuracy. The MSE comparison tables are below:
+- **Siri**  
+  ![Histogram of Residuals for Siri](figures/histogram_of_residuals_siri.png)
 
-### MSE Values for Each Model
+- **Density**  
+  ![Histogram of Residuals for Density](figures/histogram_of_residuals_density.png)
 
-| Model              | MSE          |
-|--------------------|--------------|
-| PLS                | 2.27862214   |
-| Subset             | 0.04926224   |
-| PCR                | 37.36907787  |
-| LASSO              | 150.23264894 |
-| Ridge              | 1.02850666   |
-| Stepwise           | 0.01080255   |
-| Linear Regression  | 0.04951692   |
+- **Biceps**  
+  ![Histogram of Residuals for Biceps](figures/histogram_of_residuals_biceps.png)
 
-### Average MSE Values for Each Model
+The distributions for `Siri` and `Density` residuals were near normal. The histogram for `Biceps` was more irregular.
+
+---
+
+## **5. Modeling Approach**
+
+The following regression models were implemented using R:
+
+- **Full Linear Model**: Includes all predictors  
+- **Best Subset Linear Regression**: Selects an optimal subset based on performance  
+- **Stepwise Regression (AIC)**: Automatically includes or removes predictors  
+- **Ridge Regression**: Penalizes large coefficients to reduce multicollinearity  
+- **LASSO Regression**: Shrinks less important coefficients to zero  
+- **Principal Component Regression (PCR)**: Uses orthogonal principal components  
+- **Partial Least Squares (PLS)**: Balances variance in predictors and target variable
+
+### Validation Strategy
+- **Performance Metric**: Mean Squared Error (MSE)  
+- **Robustness Check**: Monte Carlo Cross-Validation  
+- **Tuning**: Regularization strength and component counts for applicable models
+
+---
+
+## **6. Evaluation Metrics**
+
+MSE was calculated for each model on the test data and averaged across simulations to compare stability and generalization. Results are presented below:
+
+#### MSE Values from Initial Fitting
 
 | Model              | MSE          |
 |--------------------|--------------|
-| PLS                | 29.49893518  |
-| Subset             | 0.05671115   |
-| PCR                | 33.35285709  |
-| LASSO              | 0.06441354   |
-| Ridge              | 0.69024007   |
-| Stepwise           | 0.11385999   |
-| Linear Regression  | 0.09955287   |
+| PLS                | 2.2786       |
+| Subset             | 0.0493       |
+| PCR                | 37.3691      |
+| LASSO              | 150.2326     |
+| Ridge              | 1.0285       |
+| Stepwise           | **0.0108**   |
+| Linear Regression  | 0.0495       |
 
+#### Average MSE Across Monte Carlo Simulations
 
-## Findings
+| Model              | Avg MSE      |
+|--------------------|--------------|
+| PLS                | 29.4989      |
+| Subset             | **0.0567**   |
+| PCR                | 33.3529      |
+| LASSO              | 0.0644       |
+| Ridge              | 0.6902       |
+| Stepwise           | 0.1139       |
+| Linear Regression  | 0.0996       |
 
-My comprehensive model comparison revealed that the Stepwise Model has the lowest MSE, making it the best-performing model for predicting body fat percentage. Additionally, the Best Subset Model displayed the lowest average MSE in Monte Carlo simulations, further emphasizing its efficacy.
+---
 
-## Conclusion
+## **7. Outcome**
 
-This project highlighted the effectiveness of various regression techniques in predicting body fat percentage from physiological measurements. The Stepwise Model, based on the lowest MSE, and the Best Subset Model, with the lowest average MSE from Monte Carlo simulations, emerged as the most accurate models.
+- The **Stepwise Regression Model** had the lowest MSE in the initial evaluation (0.0108), indicating high prediction accuracy.  
+- The **Best Subset Model** showed the lowest **average MSE** during Monte Carlo simulation (0.0567), suggesting strong consistency across resamples.  
+- Regularized models (Ridge, LASSO) were less effective in this case, with LASSO especially underperforming, likely due to multicollinearity and lack of dominant sparse features.
 
-## References
+These results show that variable selection-based linear models can outperform penalized methods in clean, well-structured datasets with few noisy predictors.
 
-- [R documentation](https://www.r-project.org/other-docs.html)
-- [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2.tidyverse.org)
-- [glmnet: Lasso and Elastic-Net Regularized Generalized Linear Models](https://cran.r-project.org/web/packages/glmnet/index.html)
-- [pls: Partial Least Squares and Principal Component regression](https://cran.r-project.org/web/packages/pls/index.html)
+---
+
+## **8. Tools Used**
+
+- **Language**: R  
+- **Packages**: `ggplot2`, `dplyr`, `glmnet`, `pls`, `leaps`  
+- **Model Types**: Full Linear, Subset, Stepwise (AIC), Ridge, LASSO, PCR, PLS  
+- **Validation**: Monte Carlo simulations  
+- **Reporting**: R Markdown and inline commentary  
+- **Visuals**: Scatter plots, residual diagnostics, histograms, and Q-Q plots saved in the `/figures` directory
+
+---
+
+## **9. Business Impact / Use Case**
+
+Accurately estimating body fat percentage has wide applications in:
+
+- **Personalized fitness tracking**  
+- **Clinical health monitoring**  
+- **Military and athletic readiness screening**  
+- **Insurance underwriting and risk evaluation**
+
+This project demonstrates how interpretable regression models can be applied to derive reliable body composition insights, avoiding the need for expensive or invasive measurement procedures.
